@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.deltaspike.yamlconfiguration.impl;
+package org.apache.deltaspike.yaml.impl;
 
 import org.apache.deltaspike.core.impl.config.MapConfigSource;
 import org.apache.deltaspike.core.util.MapUtils;

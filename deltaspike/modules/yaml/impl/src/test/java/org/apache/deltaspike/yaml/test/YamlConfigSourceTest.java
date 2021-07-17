@@ -16,9 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.deltaspike.yamlconfiguration.test;
+package org.apache.deltaspike.yaml.test;
 
-import org.apache.deltaspike.yamlconfiguration.impl.YamlConfigSource;
+import org.apache.deltaspike.yaml.impl.YamlConfigSource;
 import org.junit.Assert;
 import org.junit.Test;
 

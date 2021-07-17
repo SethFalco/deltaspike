@@ -45,6 +45,6 @@
         <module>data</module>
         <module>scheduler</module>
         <module>test-control</module>
-        <module>yaml-configuration</module>
+        <module>yaml</module>
     </modules>
 </project>

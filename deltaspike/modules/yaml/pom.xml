@@ -27,11 +27,11 @@
   </parent>
 
   <groupId>org.apache.deltaspike.modules</groupId>
-  <artifactId>yaml-configuration-module-project</artifactId>
+  <artifactId>yaml-module-project</artifactId>
   <version>1.9.6-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>Apache DeltaSpike Yaml-Configuration-Module</name>
+  <name>Apache DeltaSpike YAML-Module</name>
 
   <modules>
     <module>api</module>

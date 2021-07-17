@@ -160,6 +160,8 @@ public class MapUtilsTest
     }
 
     /**
+     * Ignore nested null values.
+     *
      * application:
      *   name: More Apps
      *   messages:
@@ -201,8 +203,8 @@ public class MapUtilsTest
 
         Assert.assertEquals(3, result.size());
         Assert.assertEquals("More Apps", result.get("application.name"));
-        Assert.assertEquals("one,null,three", result.get("application.messages.source"));
-        Assert.assertEquals("two,null,four", result.get("application.messages.target"));
+        Assert.assertEquals("one,three", result.get("application.messages.source"));
+        Assert.assertEquals("two,four", result.get("application.messages.target"));
     }
 
     /**
@@ -216,6 +218,51 @@ public class MapUtilsTest
      */
     @Test
     public void testFlattenWithObjectArrayIndexed()
+    {
+        Map<String, String> message1 = new HashMap<>();
+        message1.put("source", "one");
+        message1.put("target", "two");
+
+        Map<String, String> message2 = new HashMap<>();
+        message2.put("source", "three");
+        message2.put("target", "four");
+
+        List<Map<String, String>> messages = new ArrayList<>();
+        messages.add(message1);
+        messages.add(message2);
+
+        Map<String, Object> application = new HashMap<>();
+        application.put("name", "More Apps");
+        application.put("messages", messages);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("application", application);
+
+        Map<String, String> result = MapUtils.flattenMapProperties(map, true);
+
+        Assert.assertEquals(5, result.size());
+        Assert.assertEquals("More Apps", result.get("application.name"));
+        Assert.assertEquals("one", result.get("application.messages[0].source"));
+        Assert.assertEquals("two", result.get("application.messages[0].target"));
+        Assert.assertEquals("three", result.get("application.messages[1].source"));
+        Assert.assertEquals("four", result.get("application.messages[1].target"));
+    }
+
+    /**
+     * Ignore nested null values.
+     *
+     * application:
+     *   name: More Apps
+     *   messages:
+     *     - source: one
+     *       target: two
+     *     - source: null
+     *       target: null
+     *     - source: three
+     *       target: four
+     */
+    @Test
+    public void testFlattenWithObjectArrayIndexedWithNull()
     {
         Map<String, String> message1 = new HashMap<>();
         message1.put("source", "one");

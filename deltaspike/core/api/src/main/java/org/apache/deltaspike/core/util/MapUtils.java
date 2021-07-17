@@ -171,8 +171,15 @@ public abstract class MapUtils
         {
             if (o instanceof Map)
             {
+                final Map map = (Map) o;
+
+                if (map.isEmpty())
+                {
+                    continue;
+                }
+
                 final String keyPrefix = (indexed) ? key + "[" + index++ + "]" : key;
-                flattenMapProperties((Map) o, output, indexed, keyPrefix);
+                flattenMapProperties((Map) map, output, indexed, keyPrefix);
             }
             else
             {

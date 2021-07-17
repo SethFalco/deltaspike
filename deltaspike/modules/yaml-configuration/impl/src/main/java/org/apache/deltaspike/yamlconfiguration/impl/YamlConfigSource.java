@@ -26,9 +26,8 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * You can create a configuration with a certain name by just
- * extending this class, calling super() with the new configuration
- * name you want.
+ * You can create a configuration with a certain name by extending this class,
+ * and calling super() with the new configuration name.
  *
  * <pre><code>
  * public class CustomYamlConfigSource extends YamlConfigSource
@@ -41,14 +40,14 @@ import java.util.Objects;
  *
  * This will seek out my_application.yml, instead of application.yml.
  *
- * @since 1.9.5
+ * @since 1.9.6
  */
 public class YamlConfigSource extends MapConfigSource
 {
-    /** The default configuration name, this is already available to use if this is on your classpath. */
+    /** Default configuration name, this is already available if this is on your classpath. */
     private static final String DEFAULT_FILE_PATH = "application.yml";
 
-    /** The configuration file/stream name that the {@link YamlConfigSource} is for. */
+    /** Configuration file/stream name that the {@link YamlConfigSource} is for. */
     private final String configName;
 
     /**
@@ -56,15 +55,15 @@ public class YamlConfigSource extends MapConfigSource
      */
     private final boolean indexed;
 
-    /** Construct the {@link YamlConfigSource} with {@link #DEFAULT_FILE_PATH}. */
+    /** Constructs the {@link YamlConfigSource} with {@link #DEFAULT_FILE_PATH}. */
     public YamlConfigSource()
     {
         this(DEFAULT_FILE_PATH);
     }
 
     /**
-     * Calls {@link #YamlConfigSource(String, boolean)} with the parameter <code>indexed</code>
-     * as false.
+     * Calls {@link #YamlConfigSource(String, boolean)} with the parameter
+     * <code>indexed</code> set to false.
      *
      * @param configPath The file path relative to the classpath of the configuration.
      * @throws NullPointerException If configPath is null.
@@ -76,7 +75,7 @@ public class YamlConfigSource extends MapConfigSource
     }
 
     /**
-     * @param configPath The file relative to the classpath of the configuration.
+     * @param configPath File relative to the classpath of the configuration.
      * @param indexed If this configuration should used indexed keys, or lists.
      * @throws NullPointerException If configPath is null.
      */
@@ -86,7 +85,7 @@ public class YamlConfigSource extends MapConfigSource
     }
 
     /**
-     * @param inputStream The input stream to read the configuration from.
+     * @param inputStream Input stream to read the configuration from.
      */
     public YamlConfigSource(InputStream inputStream)
     {
@@ -94,7 +93,7 @@ public class YamlConfigSource extends MapConfigSource
     }
 
     /**
-     * @param inputStream The input stream to read the configuration from.
+     * @param inputStream Input stream to read the configuration from.
      * @param indexed If this configuration should used indexed keys, or lists.
      */
     public YamlConfigSource(InputStream inputStream, boolean indexed)
@@ -103,8 +102,8 @@ public class YamlConfigSource extends MapConfigSource
     }
 
     /**
-     * @param inputStream The input stream to read the configuration from.
-     * @param configName The file path relative to the classpath of the configuration.
+     * @param inputStream Input stream to read the configuration from.
+     * @param configName File path relative to the classpath of the configuration.
      * @param indexed If this configuration should used indexed keys, or lists.
      * @throws NullPointerException If configName is null.
      */
@@ -114,8 +113,8 @@ public class YamlConfigSource extends MapConfigSource
     }
 
     /**
-     * @param map A {@link Map}, which may include nested {@link Map}s, of configuration properties.
-     * @param configName The file path relative to the classpath of the configuration.
+     * @param map {@link Map}, which may include nested {@link Map}s, of configuration properties.
+     * @param configName File path relative to the classpath of the configuration.
      * @param indexed If this configuration should used indexed keys, or lists.
      */
     private YamlConfigSource(Map<String, Object> map, String configName, boolean indexed)

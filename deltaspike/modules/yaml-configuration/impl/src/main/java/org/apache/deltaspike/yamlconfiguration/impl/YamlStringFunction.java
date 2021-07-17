@@ -29,20 +29,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Since the {@link org.apache.deltaspike.core.impl.config.MapConfigSource} insists that we call super, and Java
- * requires super be the first call of a method; we use this {@link Function}
- * to help as get around that limitation to perform more methods
- * while calling super.
+ * Java requires super be the first call of a method; we use this
+ * {@link Function} to perform more methods calls while calling super.
  *
- * @since 1.9.5
+ * @since 1.9.6
  */
 public class YamlStringFunction implements Function<String, Map<String, Object>>
 {
     private final Logger log = Logger.getLogger(YamlStringFunction.class.getName());
 
     /**
-     * @param configPath The path to the configuration file.
-     * @return A nested map representing all YAML properties.
+     * @param configPath Path to the configuration file.
+     * @return Nested map representing all YAML properties.
      */
     @Override
     public Map<String, Object> apply(String configPath)
@@ -56,7 +54,7 @@ public class YamlStringFunction implements Function<String, Map<String, Object>>
         }
         catch (IOException ex)
         {
-            log.log(Level.SEVERE, "This hopefully should never produce any IOExceptions.", ex);
+            log.log(Level.SEVERE, "IOException occured while reading YAML.", ex);
         }
 
         log.log(Level.WARNING, "Using YamlConfigSource, but {0} was not found on the classpath.", configPath);

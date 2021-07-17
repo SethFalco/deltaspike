@@ -23,7 +23,7 @@
     <parent>
         <groupId>org.apache.deltaspike.modules</groupId>
         <artifactId>yaml-configuration-module-project</artifactId>
-        <version>1.9.5-SNAPSHOT</version>
+        <version>1.9.6-SNAPSHOT</version>
     </parent>
 
     <artifactId>deltaspike-yaml-configuration-module-api</artifactId>

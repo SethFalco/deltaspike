@@ -24,17 +24,17 @@ import java.util.Map;
 import java.util.StringJoiner;
 
 /**
- * Utility to flatten nested {@link Map}s into a single level
- * key:value pair set of properties.
+ * Utility to flatten nested {@link Map}s into a single level key:value pair
+ * set of properties.
  *
- * @since 1.9.5
+ * @since 1.9.6
  */
 @Typed
 public abstract class MapUtils
 {
     /**
-     * Don't construct this class, you should only be using
-     * the <code>public static</code> methods available.
+     * Don't construct this class, you should only be using the
+     * <code>static</code> methods.
      */
     private MapUtils()
     {
@@ -42,11 +42,12 @@ public abstract class MapUtils
     }
 
     /**
-     * Calls {@link #flattenMapProperties(Map, boolean)} with <code>indexed</code> set to false.
+     * Calls {@link #flattenMapProperties(Map, boolean)} with
+     * <code>indexed</code> set to false.
      *
-     * @param input A {@link Map} of properties that may contain nested {@link Map}s as values.
-     * @param <V> The type(s) of value(s) the {@link Map} contains.
-     * @return A {@link Map} that contains all properties accesible by their fully qualified names.
+     * @param input Map of properties that may contain nested Maps.
+     * @param <V> Type of values the {@link Map} contains.
+     * @return Map of all properties indexed by their fully qualified names.
      * @see #flattenMapProperties(Map, boolean)
      */
     public static <V> Map<String, String> flattenMapProperties(final Map<String, V> input)
@@ -55,7 +56,8 @@ public abstract class MapUtils
     }
 
     /**
-     * <p>Converts a {@link Map} of objects to a flattened {@link Map} of {@link String} values.</p>
+     * <p>Converts a {@link Map} of objects to a flattened {@link Map} of
+     * {@link String} values.</p>
      *
      * For example, with the given input:
      *
@@ -69,7 +71,8 @@ public abstract class MapUtils
      *
      * Map&lt;String, String&gt; result = MapUtils.flattenMapProperties(map);</code></pre>
      *
-     * Will result in the following properties, assuming <code>indexed</code> is <code>false</code>:
+     * Will result in the following properties, assuming <code>indexed</code>
+     * is <code>false</code>:
      *
      * <pre><code>
      * application.name=My App
@@ -82,11 +85,11 @@ public abstract class MapUtils
      * application.prefixes[0]=&gt;
      * application.prefixes[1]=$</code></pre>
      *
-     * @param input A {@link Map} of properties that may contain nested {@link Map}s as values.
-     * @param indexed If arrays should be converted to a multiple indexed properties, appended with [i], or a
-     * single comma seperated list of values.
-     * @param <V> The type(s) of value(s) the {@link Map} contains.
-     * @return A {@link Map} that contains all properties accessible by their fully qualified names.
+     *
+     * @param input Map of properties that may contain nested Maps.
+     * @param indexed If arrays are converted to multiple properties, or a comma separated list.
+     * @param <V> Type of values the {@link Map} contains.
+     * @return Map of all properties indexed by their fully qualified names.
      */
     public static <V> Map<String, String> flattenMapProperties(final Map<String, V> input, final boolean indexed)
     {
@@ -96,15 +99,14 @@ public abstract class MapUtils
     }
 
     /**
-     * Calls {@link #flattenMapProperties(Map, Map, boolean, String)} with parameter
-     * <code>prefix</code> as <code>null</code>, since when we begin flattening the map,
-     * there is no prefix by default.
+     * Calls {@link #flattenMapProperties(Map, Map, boolean, String)} with
+     * parameter <code>prefix</code> as <code>null</code>, since when we begin
+     * flattening the map, there is no prefix by default.
      *
-     * @param input A {@link Map} of properties that may contain nested {@link Map}s as values.
-     * @param output The {@link Map} that all properties are written to.
-     * @param indexed If arrays should be converted to a multiple indexed properties, appended with [i], or a
-     * single comma seperated list of values.
-     * @param <V> The type(s) of value(s) the {@link Map} contains.
+     * @param input Map of properties that may contain nested Maps.
+     * @param output Map that all properties are added to.
+     * @param indexed If arrays are converted to multiple properties, or a comma separated list.
+     * @param <V> Type of values the {@link Map} contains.
      * @see #flattenMapProperties(Map, Map, boolean, String)
      */
     private static <V> void flattenMapProperties(final Map<String, V> input,
@@ -115,12 +117,11 @@ public abstract class MapUtils
     }
 
     /**
-     * @param input A {@link Map} of properties that may contain nested {@link Map}s as values.
-     * @param output The {@link Map} that all properties are written to.
-     * @param indexed If arrays should be converted to a multiple indexed properties, appended with [i], or a
-     * single comma seperated list of values.
-     * @param prefix The partial property name to prefix to any found properties on this level.
-     * @param <V> The type(s) of value(s) the {@link Map} contains.
+     * @param input Map of properties that may contain nested Maps.
+     * @param output Map that all properties are added to.
+     * @param indexed If arrays are converted to multiple properties, or a comma separated list.
+     * @param prefix Name to prefix to any properties found on this level.
+     * @param <V> Type of values the {@link Map} contains.
      */
     private static <V> void flattenMapProperties(final Map<String, V> input,
                                                  final Map<String, String> output,
@@ -152,12 +153,11 @@ public abstract class MapUtils
     }
 
     /**
-     * @param value An array of values that needs to be flattened.
-     * @param key The property name for this value.
-     * @param output The {@link Map} that all properties are written to.
-     * @param indexed If arrays should be converted to a multiple indexed properties, appended with [i], or a
-     * single comma seperated list of values.
-     * @param <V> The type(s) of value(s) the {@link Map} contains.
+     * @param value Array of values that needs to be flattened.
+     * @param key Property name for this value.
+     * @param output Map that all properties are added to.
+     * @param indexed If arrays are converted to multiple properties, or a comma separated list.
+     * @param <V> Type of values the {@link Map} contains.
      */
     private static <V> void addIterable(final Iterable<V> value,
                                         final String key,

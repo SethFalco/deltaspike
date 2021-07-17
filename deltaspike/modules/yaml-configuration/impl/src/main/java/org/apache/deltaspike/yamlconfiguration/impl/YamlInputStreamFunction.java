@@ -28,20 +28,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Since the {@link org.apache.deltaspike.core.impl.config.MapConfigSource} insists that we call super, and Java
- * requires super be the first call of a method; we use this {@link Function}
- * to help as get around that limitation to perform more methods
- * while calling super.
+ * Java requires super be the first call of a method; we use this
+ * {@link Function} to perform more methods calls while calling super.
  *
- * @since 1.9.5
+ * @since 1.9.6
  */
 public class YamlInputStreamFunction implements Function<InputStream, Map<String, Object>>
 {
     private final Logger log = Logger.getLogger(YamlInputStreamFunction.class.getName());
 
     /**
-     * @param inputStream The input stream to read the YAML configuration from.
-     * @return A nested map representing all YAML properties.
+     * @param inputStream Input stream to read the YAML configuration from.
+     * @return Nested map representing all YAML properties.
      */
     @Override
     public Map<String, Object> apply(InputStream inputStream)

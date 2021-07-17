@@ -16,9 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.deltaspike.yamlconfiguration.test;
+package org.apache.deltaspike.core.util;
 
-import org.apache.deltaspike.core.util.MapUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -158,6 +157,52 @@ public class MapUtilsTest
         Assert.assertEquals("More Apps", result.get("application.name"));
         Assert.assertEquals("one,three", result.get("application.messages.source"));
         Assert.assertEquals("two,four", result.get("application.messages.target"));
+    }
+
+    /**
+     * application:
+     *   name: More Apps
+     *   messages:
+     *     - source: one
+     *       target: two
+     *     - source: null
+     *       target: null
+     *     - source: three
+     *       target: four
+     */
+    @Test
+    public void testFlattenWithObjectArrayListsWithNull()
+    {
+        Map<String, String> message1 = new HashMap<>();
+        message1.put("source", "one");
+        message1.put("target", "two");
+
+        Map<String, String> message2 = new HashMap<>();
+        message2.put("source", null);
+        message2.put("target", null);
+
+        Map<String, String> message3 = new HashMap<>();
+        message2.put("source", "three");
+        message2.put("target", "four");
+
+        List<Map<String, String>> messages = new ArrayList<>();
+        messages.add(message1);
+        messages.add(message2);
+        messages.add(message3);
+
+        Map<String, Object> application = new HashMap<>();
+        application.put("name", "More Apps");
+        application.put("messages", messages);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("application", application);
+
+        Map<String, String> result = MapUtils.flattenMapProperties(map);
+
+        Assert.assertEquals(3, result.size());
+        Assert.assertEquals("More Apps", result.get("application.name"));
+        Assert.assertEquals("one,null,three", result.get("application.messages.source"));
+        Assert.assertEquals("two,null,four", result.get("application.messages.target"));
     }
 
     /**
